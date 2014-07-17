@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Tower Defense</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/game.css">
+    <link rel="stylesheet" href="css/towerdefense.css">
+
+    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+</head>
+<body>
+
+<!-- Application content go here -->
+
+<!-- Game Design -->
+
+<div class="gameTitle">
+    <span id="gamename">Tower Defense</span>
+    <br/>
+    <a href="#" id="startClicker" style="text-decoration: none;font-size:48px;color:black;">Click to Start</a>
+</div>
+
+<div class="game-wrapper" style="">
+    <!--<div id="game-cards">-->
+        <!--<div class="card" id="card1"></div>-->
+        <!--<div class="card" id="card2"></div>-->
+        <!--<div class="card" id="card3"></div>-->
+    <!--</div>-->
+    <div id="tower-container">
+        <div id="player-tower" class="tower">
+            <img class="castle" src="img/towerdefense/playertower/castle.png">
+            <img class="base" src="img/towerdefense/playertower/base.png">
+        </div>
+        <div id="ai-tower" class="tower">
+            <img class="castle" src="img/towerdefense/aitower/castle.png">
+            <img class="base" src="img/towerdefense/aitower/base.png">
+        </div>
+    </div>
+
+    <div id="resource-box"></div>
+
+
+    <div id="qcard">
+        <div id="quiz-content" class="questioned">
+            <div id="qquestion"></div>
+            <div id="qid"></div>
+            <ul id="answerBlock">
+                <li class="answer" id="optax"></li>
+                <li class="answer" id="optbx"></li>
+                <li class="answer" id="optcx"></li>
+                <li class="answer" id="optdx"></li>
+            </ul>
+            <div id="answerMsg"></div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- Javascripts go here  -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+<script src="js/vendor/jquery.easing.1.3.js"></script>
+
+<script src="js/towerdefense/towerdefense-data.js"></script>
+<script src="js/questionbank.js"></script>
+<script src="js/towerdefense/towerdefense.js"></script>
+<script src="js/counter.js"></script>
+
+<!-- Game Script-->
+
+
+</body>

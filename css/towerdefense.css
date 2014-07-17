@@ -1,0 +1,138 @@
+.gameTitle{
+    width:960px;
+    height:640px;
+    margin: 0 auto;
+    font-size: 100px;
+    font-family: 'Impact', sans-serif;
+    color:#333;
+    text-shadow: white 0 0 20px;
+    text-align: center;
+    margin-top: 20%;
+    line-height: 64px;
+    display: none;
+}
+
+#tower-container{
+    height: 90%;
+    position: relative;
+}
+
+.tower-block{
+    position: absolute;
+}
+
+#player-tower .base{
+    position: absolute;
+    bottom:0;
+    left:0;
+    width:27%;
+}
+#player-tower .castle{
+    bottom: 0;
+    left: -15%;
+    position: absolute;
+    width: 57%;
+}
+
+#ai-tower .base{
+    position: absolute;
+    bottom:0;
+    right:0;
+    width:27%;
+}
+
+#ai-tower .castle{
+    bottom: -12%;
+    position: absolute;
+    right: -1%;
+    width: 40%;
+}
+
+/* Game Cards */
+
+#game-cards{
+    position: absolute;
+    width:100%;
+    text-align: center;
+    top: 25% ;
+}
+
+.card{
+    width:150px;
+    height:180px;
+    display:inline-block;
+    margin-right: 20px;
+    background: url(../img/towerdefense/blankcard.png);
+    background-size: 100% 100%;
+}
+
+#card1{
+    transform : rotate(-10deg);
+}
+#card2{
+    transform : rotate(0deg);
+}
+#card3{
+    transform : rotate(10deg);
+}
+
+
+
+/* Question Card */
+
+#qcard, #qid{
+    display: none;
+    width: 80%;
+}
+
+#bulletA {
+    background: #a34f32;
+}
+
+#bulletB {
+    background: #7255ff;
+}
+
+#bulletC {
+    background: #8b9f20;
+}
+
+#bulletD {
+    background: #ffcf57;
+}
+
+#answerBlock {
+    list-style: none;
+}
+
+#answerMsg {
+    display: none;
+    color: black;
+    font-size: 1.6em;
+    line-height: 1;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.answer-bullet {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 5px;
+    border-radius: 50%;
+    margin-right: 10px;
+    text-align: center;
+    color: black;
+}
+
+#answerBlock li {
+    margin-bottom: 2px;
+    margin-left: -39px;
+    cursor: pointer;
+}
+
+#answerBlock li:hover {
+    font-weight: bold;
+}

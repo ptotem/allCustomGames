@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Quizination</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/game.css">
+    <link rel="stylesheet" href="css/quizination.css">
+
+    <!--<link href='http://fonts.googleapis.com/css?family=Crafty+Girls' rel='stylesheet' type='text/css'>-->
+
+    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+</head>
+<body>
+
+<!-- Application content go here -->
+
+<!-- Game Design -->
+
+<div class="gameTitle">
+    <span id="gamename">Quizination</span>
+    <br/>
+    <a href="#" id="startClicker" style="text-decoration: none;font-size:48px;color:black;">Click to Start</a>
+</div>
+
+<div class="game-wrapper" style="display: none;">
+    <div id="endBtn">End Turn</div>
+    <div id="splasher"></div>
+    <div id="sidebar">
+        <img src="img/quizination/player.png" id="playerIcon"/>
+        <div id="btnBank">
+            <div id="message" class="sidebarBtn"></div>
+            <div id="attackBtn" class="sidebarBtn playerTurn">Attack Neighbour</div>
+            <div id="fortifyBtn" class="sidebarBtn playerTurn">Fortify Defense</div>
+            <div id="diplomacyBtn" class="sidebarBtn playerTurn">Diplomacy</div>
+            <div id="cancelBtn" class="sidebarBtn playerTurn canceler">Cancel</div>
+        </div>
+        <div id="logger"><div class="content">You are the Blue Player <br/>Round 1 starts <br/></div></div>
+        <div id='diceBox'>
+            <div id='dieOne' class='oneHidden'></div>
+            <div id='dieTwo' class='twoHidden'></div>
+        </div>
+        <div id="qcard">
+            <div id="quiz-content" class="questioned">
+                <div id="qquestion"></div>
+                <div id="qid"></div>
+                <ul id="answerBlock">
+                    <li class="answer" id="optax"></li>
+                    <li class="answer" id="optbx"></li>
+                    <li class="answer" id="optcx"></li>
+                    <li class="answer" id="optdx"></li>
+                </ul>
+                <div id="answerMsg"></div>
+            </div>
+        </div>
+    </div>
+    <div id="map-wrapper">
+
+        <div id="hover-name"> <h1 style="margin: 0;padding: 0;margin-top: -5px;">Round 1</h1></div>
+        <img src="img/quizination/countries-gray/alaska.png" id="alaska" class="country"/>
+        <img src="img/quizination/countries-gray/arabia.png" id="arabia" class="country"/>
+        <img src="img/quizination/countries-gray/argentina.png" id="argentina" class="country"/>
+        <img src="img/quizination/countries-gray/baltics.png" id="baltics" class="country"/>
+        <img src="img/quizination/countries-gray/boston.png" id="boston" class="country"/>
+        <img src="img/quizination/countries-gray/brazil.png" id="brazil" class="country"/>
+        <img src="img/quizination/countries-gray/california.png" id="california" class="country"/>
+        <img src="img/quizination/countries-gray/canada.png" id="canada" class="country"/>
+        <img src="img/quizination/countries-gray/chile.png" id="chile" class="country"/>
+        <img src="img/quizination/countries-gray/china.png" id="china" class="country"/>
+        <img src="img/quizination/countries-gray/east-australia.png" id="east-australia" class="country"/>
+        <img src="img/quizination/countries-gray/egypt.png" id="egypt" class="country"/>
+        <img src="img/quizination/countries-gray/england.png" id="england" class="country"/>
+        <img src="img/quizination/countries-gray/germany.png" id="germany" class="country"/>
+        <img src="img/quizination/countries-gray/greenland.png" id="greenland" class="country"/>
+        <img src="img/quizination/countries-gray/italy.png" id="italy" class="country"/>
+        <img src="img/quizination/countries-gray/india.png" id="india" class="country"/>
+        <img src="img/quizination/countries-gray/indonesia.png" id="indonesia" class="country"/>
+        <img src="img/quizination/countries-gray/iran.png" id="iran" class="country"/>
+        <img src="img/quizination/countries-gray/irkutsk.png" id="irkutsk" class="country"/>
+        <img src="img/quizination/countries-gray/japan.png" id="japan" class="country"/>
+        <img src="img/quizination/countries-gray/kamchatka.png" id="kamchatka" class="country"/>
+        <img src="img/quizination/countries-gray/madagascar.png" id="madagascar" class="country"/>
+        <img src="img/quizination/countries-gray/mexico.png" id="mexico" class="country"/>
+        <img src="img/quizination/countries-gray/mongolia.png" id="mongolia" class="country"/>
+        <img src="img/quizination/countries-gray/nevada.png" id="nevada" class="country"/>
+        <img src="img/quizination/countries-gray/new-york.png" id="new-york" class="country"/>
+        <img src="img/quizination/countries-gray/niagara.png" id="niagara" class="country"/>
+        <img src="img/quizination/countries-gray/oceania.png" id="oceania" class="country"/>
+        <img src="img/quizination/countries-gray/romania.png" id="romania" class="country"/>
+        <img src="img/quizination/countries-gray/russia.png" id="russia" class="country"/>
+        <img src="img/quizination/countries-gray/scandinavia.png" id="scandinavia" class="country"/>
+        <img src="img/quizination/countries-gray/siberia.png" id="siberia" class="country"/>
+        <img src="img/quizination/countries-gray/south-africa.png" id="south-africa" class="country"/>
+        <img src="img/quizination/countries-gray/spain.png" id="spain" class="country"/>
+        <img src="img/quizination/countries-gray/sudan.png" id="sudan" class="country"/>
+        <img src="img/quizination/countries-gray/thailand.png" id="thailand" class="country"/>
+        <img src="img/quizination/countries-gray/ukraine.png" id="ukraine" class="country"/>
+        <img src="img/quizination/countries-gray/venezuela.png" id="venezuela" class="country"/>
+        <img src="img/quizination/countries-gray/west-africa.png" id="west-africa" class="country"/>
+        <img src="img/quizination/countries-gray/west-australia.png" id="west-australia" class="country"/>
+        <img src="img/quizination/countries-gray/zaire.png" id="zaire" class="country"/>
+    </div>
+    <div id="bottombar">
+        <div id="player-area">
+
+        </div>
+
+        <div id="enemy-area">
+            <img src="img/quizination/aiback.png" id="aiBack"/>
+            <div id="threat">
+                <img src="img/quizination/ai.png" id="aiIcon"/>
+            </div>
+            <div id="threat-value">
+                50
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Javascripts go here  -->
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+<script src="js/vendor/jquery.easing.1.3.js"></script>
+
+<script src="js/quizination/quizination-data.js"></script>
+<script src="js/questionbank.js"></script>
+<script src="js/quizination/quizination.js"></script>
+<script src="js/quizination/dice.js"></script>
+<script src="js/counter.js"></script>
+
+<!-- Game Script-->
+
+
+</body>
