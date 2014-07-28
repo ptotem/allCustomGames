@@ -22,7 +22,7 @@
     <a href="#" id="startClicker" style="text-decoration: none;font-size:48px;color:black;">Click to Start</a>
 </div>
 
-
+<!--game wrapper-->
 <div class="game-wrapper" style="">
 
 
@@ -36,9 +36,14 @@
             <img class="base" src="img/towerdefense/aitower/base.png">
         </div>
     </div>
-<div class="broken-animation"></div>
-    <div id="resource-box"></div>
-
+<div id="player-tower-effect" class="effect">
+    <img src="img/towerdefense/stars.gif" class="build_image">
+    <img src="img/towerdefense/fire.gif" class="build_image1">
+</div>
+    <div id="ai-tower-effect" class="effect">
+    <img src="img/towerdefense/stars.gif" class="build_image">
+    <img src="img/towerdefense/fire.gif" class="build_image1">
+</div>
 
     <div id="qcard">
         <div id="quiz-content" class="questioned">
@@ -55,17 +60,19 @@
     </div>
 
 </div>
-
+<!--game cards-->
     <div class="card-container">
         <img class="card-frame" src="img/towerdefense/frame.png"/>
-        <div class="card" id="card1"></div>
-        <div class="card" id="card2"></div>
-        <div class="card" id="card3"></div>
+        <div class="cards" id="card1"></div>
+        <div class="cards" id="card2"></div>
+        <div class="cards" id="card3"></div>
     </div>
+<!--game clouds-->
 <div id="cloud-container">
     <div class="background1"></div>
     <div class="background2"></div>
 </div>
+<!--game beam-->
 <div id="target1" class="parallax-port">
 
     <img class="parallax-layer " src="img/towerdefense/4L.png" alt=""/>
@@ -77,26 +84,48 @@
     <img class="parallax-layer " src="img/towerdefense/8L.png" alt=""/>
 
 </div>
+<!--game resources-->
 <div id="resource-panel">
+
     <div class="resource" >
         <div class="resource-name" style="color: red">Red</div>
-        <div class="resource-number" id="red"></div>
+        <div class="resource-number" id="red_score" style="color: red"></div>
     </div>
     <div class="resource">
         <div class="resource-name" style="color:blue">Blue</div>
-        <div class="resource-number" id="blue"></div>
+        <div class="resource-number" id="blue_score" style="color: blue"></div>
     </div>
     <div class="resource" >
         <div class="resource-name" style="color:green">Green</div>
-        <div class="resource-number" id="green"></div>
+        <div class="resource-number" id="green_score" style="color: green"></div>
     </div>
 </div>
+
+<div id="comp_resource-panel">
+
+    <div class="resource" >
+        <div class="resource-name" style="color: red">Red</div>
+        <div class="resource-number" id="comp_red_score" style="color: red"></div>
+    </div>
+    <div class="resource">
+        <div class="resource-name" style="color:blue">Blue</div>
+        <div class="resource-number" id="comp_blue_score" style="color: blue"></div>
+    </div>
+    <div class="resource" >
+        <div class="resource-name" style="color:green">Green</div>
+        <div class="resource-number" id="comp_green_score" style="color: green"></div>
+    </div>
+</div>
+
+
 <!-- Javascripts go here  -->
 
 <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
 <!--<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>-->
+
 <script src="js/vendor/jquery-1.10.2.min.js"></script>
 <script src="js/vendor/jquery.easing.1.3.js"></script>
+<script src="js/towerdefense/ion.sound.min.js"></script>
 
 <script type="text/javascript" src="js/towerdefense/jquery.parallax.js"></script>
 <script type="text/javascript" src="js/towerdefense/jquery.event.frame.js"></script>
