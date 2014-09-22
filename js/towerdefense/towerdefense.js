@@ -1,7 +1,7 @@
 //var blinkit;
 var playerHt = 0;
 var aiHt = 0;
-player_turn = true;
+playerTurn = true;
 var red, blue, green, attack , build;
 var cal_red, cal_blue, cal_green;
 var comp_cal_red, comp_cal_blue, comp_cal_green;
@@ -98,11 +98,10 @@ function setTowerTop(team, cap, top, posx, posy, wd) {
     $(".cards").click(function () {
 
 
-        console.log("on .cards click, player_turn :- " + player_turn);
-        if (player_turn) {
-            player_turn = false;
+        console.log("on .cards click, playerTurn :- " + playerTurn);
+        if (playerTurn ==true) {
             card_click($(this), event);
-
+            playerTurn = false;
              }
     });
 
@@ -128,7 +127,7 @@ function card_click(thisobj) {
     comp_cal_blue = $("#comp_blue_score").text() - parseInt(blue);
     comp_cal_green = $("#comp_green_score").text() - parseInt(green);
 
-    if (player_turn == false) {
+    if (playerTurn == false) {
         $("#red_score").text(cal_red);
         $("#blue_score").text(cal_blue);
         $("#green_score").text(cal_green);
@@ -140,11 +139,11 @@ function card_click(thisobj) {
     }
 
     console.log("card_type :- " + card_type);
-    console.log("player_turn :- " + player_turn);
+    console.log("playerTurn :- " + playerTurn);
 
     switch (card_type) {
         case "attack":
-            if (player_turn == false) {
+            if (playerTurn == false) {
                 setTower("ai", attack);
                 $("#ai-tower-effect").find('.build_image1').show().delay(1000).fadeOut();
                 $.ionSound.play("blast");
@@ -156,7 +155,7 @@ function card_click(thisobj) {
             }
             break;
         case "build":
-            if (player_turn == false) {
+            if (playerTurn == false) {
                 setTower("player", build);
                 $("#player-tower-effect").find('.build_image').show().delay(1000).fadeOut();
             }
@@ -171,8 +170,8 @@ function card_click(thisobj) {
 
     }
 //    setTimeout(card_click, 4000);
-    if (player_turn == false) {
-        player_turn = true;
+    if (playerTurn == false) {
+        playerTurn = true;
         $(".cards").empty();
         keyArray = shuffle(theImages);
 
@@ -191,7 +190,7 @@ function card_click(thisobj) {
 
         });
         console.log("card type b4 comp_click :- " + card_type);
-        console.log("player_turn b4 comp_click :- " + player_turn);
+        console.log("playerTurn b4 comp_click :- " + player_turn);
 //        if (card_type=="resource"){
 //            console.log("this is correct place");
 //        }
