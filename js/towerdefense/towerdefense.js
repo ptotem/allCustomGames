@@ -33,6 +33,8 @@ function initGame() {
 
     setTower('player', game.startHeight);
     setTower('ai', game.startHeight + 18);
+    keyArray = shuffle(theImages);
+
 }
 
 function setTower(team, delta) {
@@ -100,10 +102,11 @@ function setTowerTop(team, cap, top, posx, posy, wd) {
 
         console.log("on .cards click, player_turn :- " + player_turn);
         if (player_turn) {
-            player_turn = false;
             card_click($(this), event);
+            player_turn = false;
 
-             }
+
+        }
     });
 
 
@@ -128,15 +131,15 @@ function card_click(thisobj) {
     comp_cal_blue = $("#comp_blue_score").text() - parseInt(blue);
     comp_cal_green = $("#comp_green_score").text() - parseInt(green);
 
-    if (player_turn == false) {
-        $("#red_score").text(cal_red);
-        $("#blue_score").text(cal_blue);
-        $("#green_score").text(cal_green);
+    if (player_turn == true) {
+        $("#comp_red_score").text(cal_red);
+        $("#comp_blue_score").text(cal_blue);
+        $("#comp_green_score").text(cal_green);
     }
     else {
-        $("#comp_red_score").text(comp_cal_red);
-        $("#comp_blue_score").text(comp_cal_blue);
-        $("#comp_green_score").text(comp_cal_green);
+        $("#red_score").text(comp_cal_red);
+        $("#blue_score").text(comp_cal_blue);
+        $("#green_score").text(comp_cal_green);
     }
 
     console.log("card_type :- " + card_type);
@@ -174,7 +177,6 @@ function card_click(thisobj) {
     if (player_turn == false) {
         player_turn = true;
         $(".cards").empty();
-        keyArray = shuffle(theImages);
 
         var red_val, blue_val, green_val, attack_val, build_val, card_type, card_image;
         $.each(keyArray, function (index, value) {
