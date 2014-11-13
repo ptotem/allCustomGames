@@ -28,12 +28,13 @@ var myCards = [
 
 
 var theImages =  ["card1","card2","card3","card4","card5","card6","card7","card8","card9", "card10"];
+
 function shuffle(o) {
     for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
     return o;
 };
 
-$(function () {
+function refresh(){
     keyArray = shuffle(theImages);
 
     var red_val, blue_val, green_val, attack_val, build_val, card_type, card_image;
@@ -50,14 +51,5 @@ $(function () {
         $('.card-container').find('.cards').eq(index).append('<img data-val-type="'+card_type +'" data-val-green="'+green_val+'"data-val-build="'+ build_val +'" data-val-blue="'+blue_val+'" data-val-red="'+red_val+'" data-val-attack="'+attack_val+'" src="'+card_image+'" class="card-image"/>');
 
     });
-});
 
-
-
-
-
-
-
-
-
-
+}

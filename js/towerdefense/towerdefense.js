@@ -32,7 +32,7 @@ $(function () {
 function initGame() {
 
     setTower('player', game.startHeight);
-    setTower('ai', game.startHeight + 18);
+    setTower('ai', game.startHeight + 20);
     keyArray = shuffle(theImages);
 
 }
@@ -82,35 +82,25 @@ function setTowerTop(team, cap, top, posx, posy, wd) {
     }
 }
 
+var red_val = 50;
+var blue_val = 50;
+var green_val = 50;
+var comp_red_val = 60;
+var comp_blue_val = 60;
+var comp_green_val = 60;
 
-    var red_val = 50;
-    var blue_val = 50;
-    var green_val = 50;
-    var comp_red_val = 60;
-    var comp_blue_val = 60;
-    var comp_green_val = 60;
-
-    $("#red_score").text(red_val);
-    $("#blue_score").text(blue_val);
-    $("#green_score").text(green_val);
-    $("#comp_red_score").text(comp_red_val);
-    $("#comp_blue_score").text(comp_blue_val);
-    $("#comp_green_score").text(comp_green_val);
-
-    $(".cards").click(function () {
+$("#red_score").text(red_val);
+$("#blue_score").text(blue_val);
+$("#green_score").text(green_val);
+$("#comp_red_score").text(comp_red_val);
+$("#comp_blue_score").text(comp_blue_val);
+$("#comp_green_score").text(comp_green_val);
 
 
-        console.log("on .cards click, player_turn :- " + player_turn);
-        if (player_turn) {
-            card_click($(this), event);
-            player_turn = false;
-
-
-        }
-    });
-
-
-
+$(".cards").click(function () {
+    console.log("on .cards click, player_turn :- " + player_turn);
+    card_click($(this), event);
+});
 
 
 function card_click(thisobj) {
@@ -121,25 +111,32 @@ function card_click(thisobj) {
     red = $(thisobj).find('img').attr("data-val-red");
     blue = $(thisobj).find('img').attr("data-val-blue");
     green = $(thisobj).find('img').attr("data-val-green");
-
     attack = $(thisobj).find('img').attr("data-val-attack");
     build = $(thisobj).find('img').attr("data-val-build");
+
+    console.log("card_red in card_click :- " + red);
+    console.log("card_blue in card_click :- " + blue);
+    console.log("card_green in card_click :- " + green);
+    console.log("card_attack in card_click :- " + attack);
+    console.log("card_build in card_click :- " + build);
+
     cal_red = $("#red_score").text() - parseInt(red);
     cal_blue = $("#blue_score").text() - parseInt(blue);
     cal_green = $("#green_score").text() - parseInt(green);
+
     comp_cal_red = $("#comp_red_score").text() - parseInt(red);
     comp_cal_blue = $("#comp_blue_score").text() - parseInt(blue);
     comp_cal_green = $("#comp_green_score").text() - parseInt(green);
 
     if (player_turn == true) {
-        $("#comp_red_score").text(cal_red);
-        $("#comp_blue_score").text(cal_blue);
-        $("#comp_green_score").text(cal_green);
+        $("#red_score").text(cal_red);
+        $("#blue_score").text(cal_blue);
+        $("#green_score").text(cal_green);
     }
     else {
-        $("#red_score").text(comp_cal_red);
-        $("#blue_score").text(comp_cal_blue);
-        $("#green_score").text(comp_cal_green);
+        $("#comp_red_score").text(comp_cal_red);
+        $("#comp_blue_score").text(comp_cal_blue);
+        $("#comp_green_score").text(comp_cal_green);
     }
 
     console.log("card_type :- " + card_type);
@@ -147,7 +144,7 @@ function card_click(thisobj) {
 
     switch (card_type) {
         case "attack":
-            if (player_turn == false) {
+            if (player_turn) {
                 setTower("ai", attack);
                 $("#ai-tower-effect").find('.build_image1').show().delay(1000).fadeOut();
                 $.ionSound.play("blast");
@@ -158,8 +155,9 @@ function card_click(thisobj) {
                 $.ionSound.play("blast");
             }
             break;
+
         case "build":
-            if (player_turn == false) {
+            if (player_turn) {
                 setTower("player", build);
                 $("#player-tower-effect").find('.build_image').show().delay(1000).fadeOut();
             }
@@ -168,55 +166,109 @@ function card_click(thisobj) {
                 $("#ai-tower-effect").find('.build_image').show().delay(1000).fadeOut();
             }
             break;
+
+        case "green":
+            if (player_turn) {
+                if(attack != 0) {
+                    setTower("ai", attack);
+                    $("#ai-tower-effect").find('.build_image1').show().delay(1000).fadeOut();
+                    $.ionSound.play("blast");
+                } else {
+                    setTower("player", build);
+                    $("#player-tower-effect").find('.build_image').show().delay(1000).fadeOut();
+                }
+            }
+
+            else {
+                if(attack != 0) {
+                    setTower("player", attack);
+                    $("#player-tower-effect").find('.build_image1').show().delay(1000).fadeOut();
+                    $.ionSound.play("blast");
+                } else {
+                    setTower("ai", build);
+                    $("#ai-tower-effect").find('.build_image').show().delay(1000).fadeOut();
+                }
+            }
+            break;
+
         case "resource":
-           getQuestion();
+            getQuestion();
             break;
 
     }
 //    setTimeout(card_click, 4000);
-    if (player_turn == false) {
+
+//    $(".cards").empty();
+//
+//    var red_val, blue_val, green_val, attack_val, build_val, card_type, card_image;
+//    $.each(keyArray, function (index, value) {
+//        red_val = eval("myCards[0]." + value + ".red");
+//        blue_val = eval("myCards[0]." + value + ".blue");
+//        green_val = eval("myCards[0]." + value + ".green");
+//        attack_val = eval("myCards[0]." + value + ".attack");
+//        build_val = eval("myCards[0]." + value + ".build");
+//        card_type = eval("myCards[0]." + value + ".type");
+//        card_image = eval("myCards[0]." + value + ".image");
+//
+////                $('.card-container').find('.cards').eq(index).append('<img data-val-type="' + card_type + '" data-val-green="' + green_val + '" data-val-build="' + build_val + '" data-val-blue="' + blue_val + '" data-val-red="' + red_val + '" src="' + value + '" data-val-attack="' + attack_val + '">');
+//        $('.card-container').find('.cards').eq(index).append('<img data-val-type="' + card_type + '" data-val-green="' + green_val + '"data-val-build="' + build_val + '" data-val-blue="' + blue_val + '" data-val-red="' + red_val + '" data-val-attack="' + attack_val + '" src="' + card_image + '" class="card-image"/>');
+//
+//    });
+//
+//    console.log("card type b4 comp_click :- " + card_type);
+//    console.log("player_turn b4 comp_click :- " + player_turn);
+////        if (card_type=="resource"){
+////            console.log("this is correct place");
+////        }
+////        else{
+////            setTimeout(comp_click, 4000);
+////        }
+
+    $(".cards").empty();
+    keyArray = shuffle(theImages);
+
+    var red_val, blue_val, green_val, attack_val, build_val, card_type, card_image;
+    $.each(keyArray, function (index, value) {
+        red_val = eval("myCards[0]." + value + ".red");
+        blue_val = eval("myCards[0]." + value + ".blue");
+        green_val = eval("myCards[0]." + value + ".green");
+        attack_val = eval("myCards[0]." + value + ".attack");
+        build_val = eval("myCards[0]." + value + ".build");
+        card_type = eval("myCards[0]." + value + ".type");
+        card_image = eval("myCards[0]." + value + ".image");
+
+//      $('.card-container').find('.cards').eq(index).append('<img data-val-type="' + card_type + '" data-val-green="' + green_val + '" data-val-build="' + build_val + '" data-val-blue="' + blue_val + '" data-val-red="' + red_val + '" src="' + value + '" data-val-attack="' + attack_val + '">');
+        $('.card-container').find('.cards').eq(index).append('<img data-val-type="'+card_type +'" data-val-green="'+green_val+'"data-val-build="'+ build_val +'" data-val-blue="'+blue_val+'" data-val-red="'+red_val+'" data-val-attack="'+attack_val+'" src="'+card_image+'" class="card-image"/>');
+
+    });
+
+    if (player_turn) {
+        player_turn = false;
+        setTimeout(comp_click, 5000)
+    } else {
         player_turn = true;
-        $(".cards").empty();
-
-        var red_val, blue_val, green_val, attack_val, build_val, card_type, card_image;
-        $.each(keyArray, function (index, value) {
-            red_val = eval("myCards[0]." + value + ".red");
-            blue_val = eval("myCards[0]." + value + ".blue");
-            green_val = eval("myCards[0]." + value + ".green");
-            attack_val = eval("myCards[0]." + value + ".attack");
-            build_val = eval("myCards[0]." + value + ".build");
-            card_type = eval("myCards[0]." + value + ".type");
-            card_image = eval("myCards[0]." + value + ".image");
-
-//                $('.card-container').find('.cards').eq(index).append('<img data-val-type="' + card_type + '" data-val-green="' + green_val + '" data-val-build="' + build_val + '" data-val-blue="' + blue_val + '" data-val-red="' + red_val + '" src="' + value + '" data-val-attack="' + attack_val + '">');
-            $('.card-container').find('.cards').eq(index).append('<img data-val-type="' + card_type + '" data-val-green="' + green_val + '"data-val-build="' + build_val + '" data-val-blue="' + blue_val + '" data-val-red="' + red_val + '" data-val-attack="' + attack_val + '" src="' + card_image + '" class="card-image"/>');
-
-        });
-        console.log("card type b4 comp_click :- " + card_type);
-        console.log("player_turn b4 comp_click :- " + player_turn);
-//        if (card_type=="resource"){
-//            console.log("this is correct place");
-//        }
-//        else{
-            setTimeout(comp_click, 4000);
-//        }
-
-
     }
+
+
 }
+
 
 function comp_click() {
     console.log("computer click");
     random_button = $(".card-container").find(".cards")[Math.floor(3 * Math.random())];
 //    console.log("random_button :- " + $(random_button).attr('class'));
 
-
-
-
     card_click($(random_button), 'click');
 
+}
 
 
+
+
+
+function shuffle(o) {
+    for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
 }
 
 function getQuestion() {
@@ -248,8 +300,7 @@ function getQuestion() {
     }, 1000);
 }
 
-function bindAnswers()
-{
+function bindAnswers(){
     console.log("player turn in bindAnswers :- " + player_turn);
     if (player_turn==false){
 
@@ -274,7 +325,7 @@ function processAnswers(answer) {
     var correctAnswer = data.split('||')[2];
     var answerPayoff = parseInt(data.split('||')[0]);
     console.log("cal_green",+cal_green);
-var answer_score = cal_green+answerPayoff;
+    var answer_score = cal_green+answerPayoff;
 
 //  var addplay=5;
 //  $('#green').text(addplay)
